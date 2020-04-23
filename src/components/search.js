@@ -11,7 +11,7 @@ class Search extends React.Component {
             printType: "",
             sortBy: "",
             search: "",
-            spec: "",
+            specbox: "",
             empty: false
         }
         this.search = this.search.bind(this)
@@ -21,39 +21,9 @@ class Search extends React.Component {
     }
     //this function setes state depending on what the user wants to search for
     handleChange(event){
-        switch (event.target.id) {
-          case 'query':
             this.setState({
-              query: event.target.value
+              [event.target.id]: event.target.value
             });
-            break;
-          case 'searchbox':
-            this.setState({
-              search: event.target.value
-            });
-            break;
-          case 'specbox':
-            this.setState({
-              spec: event.target.value
-            });
-            break;
-          case 'filter':
-            this.setState({
-              filter: event.target.value
-            });
-            break;
-          case 'print':
-            this.setState({
-              printType: event.target.value
-            });
-            break;
-          case 'sort':
-            this.setState({
-              sortBy: event.target.value
-            });
-            break;
-          // code block
-        }
     }
     delete() {
         this.setState({
@@ -62,7 +32,7 @@ class Search extends React.Component {
           printType: '',
           sortBy: '',
           search: '',
-          spec: '',
+          specbox: '',
           empty: true
         });
     }
@@ -84,7 +54,7 @@ class Search extends React.Component {
             let query =
                 this.state.query === ''
                 ? ''
-                : '+' + this.state.query + ':' + this.state.spec;
+                : '+' + this.state.query + ':' + this.state.specbox;
             let filter =
                 this.state.filter === '' ? '' : '&filter=' + this.state.filter;
             let print =
@@ -100,7 +70,8 @@ class Search extends React.Component {
             console.log(res);
             this.props.updateLoading();
             this.props.updateResults(res.data.items);
-        }
+      }
+      
     }
     render(){
         return (
@@ -110,7 +81,7 @@ class Search extends React.Component {
               <div className="basic-search">
                 <input
                   onChange={this.handleChange}
-                  id="searchbox"
+                  id="search"
                   type="text"
                   placeholder="Enter Text"
                 />
@@ -155,7 +126,7 @@ class Search extends React.Component {
                   </div>
                   <div className="input-field">
                     <div className="input-select">
-                      <select id="print" onChange={this.handleChange}>
+                      <select id="printType" onChange={this.handleChange}>
                         <option placeholder="" value="">
                           {' '}
                           PRINT TYPE
@@ -168,7 +139,7 @@ class Search extends React.Component {
                   </div>
                   <div className="input-field">
                     <div className="input-select">
-                      <select id="sort" onChange={this.handleChange}>
+                      <select id="sortBy" onChange={this.handleChange}>
                         <option placeholder="" value="">
                           SORT BY
                         </option>
