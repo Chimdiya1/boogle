@@ -8,7 +8,7 @@ function Bookview(props) {
        return <Spinner />;
      }
     return (
-      <div>
+      <div className="book-view-container">
         <h2 style={{ textAlign:"center" }}>
           Results
         </h2>

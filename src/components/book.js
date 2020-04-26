@@ -6,7 +6,6 @@ function Book(props) {
     return (
       <div className="book">
         <div className="book-inner">
-          <div>
             {book.imageLinks && (
               <img src={book.imageLinks.thumbnail} alt={book.title}></img>
             )}
@@ -22,7 +21,6 @@ function Book(props) {
                 </button>
               </a>
             )}
-          </div>
         </div>
       </div>
     );
